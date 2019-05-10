@@ -826,7 +826,8 @@ def main():
         global manage_firewall
 
         message = ''
-        interface = 'wlan0'
+        #interface = 'wlan0'
+        interface = 'en0'
         loop=False
         conspiracy = False
 
