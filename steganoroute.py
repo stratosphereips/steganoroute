@@ -45,7 +45,7 @@ import os, pwd, string, sys
 try:
     from scapy.all import *
 except ImportError:
-    print 'You need the python scapy libraries. On debian-based linux type sudo apt-get install python-scapy'
+    print('You need the python scapy libraries. On debian-based linux type sudo apt-get install python-scapy')
 import getopt
 
 
@@ -73,47 +73,47 @@ manage_firewall = False
 
 # Print version information and exit
 def version():
-  print "+----------------------------------------------------------------------+"
-  print "| steganoroute.py Version "+ vernum +"                                      |"
-  print "| This program is free software; you can redistribute it and/or modify |"
-  print "| it under the terms of the GNU General Public License as published by |"
-  print "| the Free Software Foundation; either version 2 of the License, or    |"
-  print "| (at your option) any later version.                                  |"
-  print "|                                                                      |"
-  print "| Author: Garcia Sebastian, eldraco@gmail.com                          |"
-  print "| Mateslab Hackspace www.mateslab.com.ar                               |"
-  print "+----------------------------------------------------------------------+"
-  print
+  print("+----------------------------------------------------------------------+")
+  print("| steganoroute.py Version "+ vernum +"                                      |")
+  print("| This program is free software; you can redistribute it and/or modify |")
+  print("| it under the terms of the GNU General Public License as published by |")
+  print("| the Free Software Foundation; either version 2 of the License, or    |")
+  print("| (at your option) any later version.                                  |")
+  print("|                                                                      |")
+  print("| Author: Garcia Sebastian, eldraco@gmail.com                          |")
+  print("| Mateslab Hackspace www.mateslab.com.ar                               |")
+  print("+----------------------------------------------------------------------+")
+  print()
 
 
 # Print help information and exit:
 def usage():
-  print "+----------------------------------------------------------------------+"
-  print "| steganoroute.py Version "+ vernum +"                                      |"
-  print "| This program is free software; you can redistribute it and/or modify |"
-  print "| it under the terms of the GNU General Public License as published by |"
-  print "| the Free Software Foundation; either version 2 of the License, or    |"
-  print "| (at your option) any later version.                                  |"
-  print "|                                                                      |"
-  print "| Author: Garcia Sebastian, eldraco@gmail.com                          |"
-  print "| Mateslab Hackspace www.mateslab.com.ar                               |"
-  print "+----------------------------------------------------------------------+"
-  print "\nusage: %s <options>" % sys.argv[0]
-  print "options:"
-  print "  -h, --help         	Show this help message and exit"
-  print "  -V, --version      	Output version information and exit"
-  print "  -v, --verbose      	Output more information."
-  print "  -D, --debug      	Debug."
-  print "  -m, --message    	Message to send."
-  print "  -i, --interface    	Interface to use."
-  print "  -n, --negative    	Photographic Negative version. Use packets for the letters instead of timeouts."
-  print "  -l, --loop      	Loop forever."
-  print "  -t, --ttl      	The first TTL this computer should respond to. By default it is the TTL of the first packet it sniffs."
-  print "  -a, --address      	Sniff packets arriving at this IP address only. To avoid problems with outgoing mtr from the server!"
-  print "  -s, --source      	Send messages only to this client source address."
-  print "  -c, --conspiracy    Conspiracy mode. Use the IP addresses of real intelligence agencies as fake hops. It seams that every agency is doing a MITM to you!"
-  print "  -f, --firewall    Manage the firewall for me. This option automatically adds a rule to stop your computer from receiving pings and deletes it on exit. If you do not use this option you MUST stop your computer from receiving pings by hand. Use this to put the rule : 'iptables -D INPUT 1 -p icmp --icmp-type 8 -j DROP' and this to delete the rule 'iptables -D INPUT 1'"
-  print
+  print("+----------------------------------------------------------------------+")
+  print("| steganoroute.py Version "+ vernum +"                                      |")
+  print("| This program is free software; you can redistribute it and/or modify |")
+  print("| it under the terms of the GNU General Public License as published by |")
+  print("| the Free Software Foundation; either version 2 of the License, or    |")
+  print("| (at your option) any later version.                                  |")
+  print("|                                                                      |")
+  print("| Author: Garcia Sebastian, eldraco@gmail.com                          |")
+  print("| Mateslab Hackspace www.mateslab.com.ar                               |")
+  print("+----------------------------------------------------------------------+")
+  print("\nusage: %s <options>" % sys.argv[0])
+  print("options:")
+  print("  -h, --help         	Show this help message and exit")
+  print("  -V, --version      	Output version information and exit")
+  print("  -v, --verbose      	Output more information.")
+  print("  -D, --debug      	Debug.")
+  print("  -m, --message    	Message to send.")
+  print("  -i, --interface    	Interface to use.")
+  print("  -n, --negative    	Photographic Negative version. Use packets for the letters instead of timeouts.")
+  print("  -l, --loop      	Loop forever.")
+  print("  -t, --ttl      	The first TTL this computer should respond to. By default it is the TTL of the first packet it sniffs.")
+  print("  -a, --address      	Sniff packets arriving at this IP address only. To avoid problems with outgoing mtr from the server!")
+  print("  -s, --source      	Send messages only to this client source address.")
+  print("  -c, --conspiracy    Conspiracy mode. Use the IP addresses of real intelligence agencies as fake hops. It seams that every agency is doing a MITM to you!")
+  print("  -f, --firewall    Manage the firewall for me. This option automatically adds a rule to stop your computer from receiving pings and deletes it on exit. If you do not use this option you MUST stop your computer from receiving pings by hand. Use this to put the rule : 'iptables -D INPUT 1 -p icmp --icmp-type 8 -j DROP' and this to delete the rule 'iptables -D INPUT 1'")
+  print()
   sys.exit(1)
 
 
@@ -131,7 +131,7 @@ def create_message(message):
 
     try:
         if debug:
-            print 'Message to send: ' + str(message)
+            print('Message to send: ' + str(message))
 
         A_letter = [[0,0,1,1,1,1,1,0],  
                     [0,1,0,0,1,0,0,0],  
@@ -586,7 +586,7 @@ def create_message(message):
 
         for letter in message:
             if debug:
-                print 'Processing letter: {0}'.format(letter)
+                print('Processing letter: {0}'.format(letter))
             for i in letters[letter]:
                 pattern.append(i)
 
@@ -597,18 +597,18 @@ def create_message(message):
 
 
         if debug:
-            print 'Len of the pattern : {0}'.format(len(pattern))
+            print('Len of the pattern : {0}'.format(len(pattern)))
 
 
     except Exception as inst:
         if debug:
-            print '\tProblem in ()'
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
+            print('\tProblem in ()')
+        print(type(inst))     # the exception instance
+        print(inst.args)      # arguments stored in .args
+        print(inst)           # __str__ allows args to printed directly
         x, y = inst          # __getitem__ allows args to be unpacked directly
-        print 'x =', x
-        print 'y =', y
+        print('x =', x)
+        print('y =', y)
         if manage_firewall:
             # Before going out, put everything in place again...
             iptables_command = "iptables -D INPUT 1"
@@ -632,7 +632,7 @@ def send_message(interface):
     try:
         filter_text = "icmp[0]=8 and icmp[8] < 40"
         
-        print 'Sniffing packets and sending text in this round...'
+        print('Sniffing packets and sending text in this round...')
         # The filter is to catch only traceroute packets. That is packets with TTL < 30.
         if not my_address and source_address:
             filter_text = filter_text + " and src host " + source_address
@@ -642,22 +642,22 @@ def send_message(interface):
             filter_text = filter_text + " and dst host " + my_address + " and src host " + source_address
         
         if debug:
-            print 'Filter text applied: {0}'.format(filter_text)
+            print('Filter text applied: {0}'.format(filter_text))
 
         try:
             pkts = sniff(count=0,filter=filter_text,prn=lambda x:process_packet(len(x),x),iface=interface)               
         except socket.error:
-            print 'You need to be root to sniff packets.'
+            print('You need to be root to sniff packets.')
 
     except Exception as inst:
         if debug:
-            print '\tProblem in send_message()'
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
+            print('\tProblem in send_message()')
+        print(type(inst))     # the exception instance
+        print(inst.args)      # arguments stored in .args
+        print(inst)           # __str__ allows args to printed directly
         x, y = inst          # __getitem__ allows args to be unpacked directly
-        print 'x =', x
-        print 'y =', y
+        print('x =', x)
+        print('y =', y)
         if manage_firewall:
             # Before going out, put everything in place again...
             iptables_command = "iptables -D INPUT 1"
@@ -687,8 +687,8 @@ def process_packet(pkt_len,pkt):
 
         current_ttl = pkt[IP].ttl
         if verbose:
-            print
-            print 'Packet received from {0}. TTL:{1} (myttl:{2}). '.format(pkt[IP].src,str(current_ttl), str(my_ttl)),
+            print()
+            print('Packet received from {0}. TTL:{1} (myttl:{2}). '.format(pkt[IP].src,str(current_ttl), str(my_ttl)), end=' ')
 
         if current_ttl == my_ttl:
             First_Packet = True
@@ -698,9 +698,9 @@ def process_packet(pkt_len,pkt):
                 resp_icmp = ICMP(type=11, code=0 ,id=hex(pkt[ICMP].id), seq=pkt[ICMP].seq)
                 send(resp_ip/resp_icmp/pkt[0].payload,verbose=0)
                 if verbose and not debug:
-                    print ' Packet send.',
+                    print(' Packet send.', end=' ')
                 elif debug:
-                    print ' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()),
+                    print(' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()), end=' ')
 
         elif current_ttl == my_ttl + 1 :
             First_Packet = True
@@ -709,9 +709,9 @@ def process_packet(pkt_len,pkt):
                 resp_icmp = ICMP(type=11, code=0 ,id=hex(pkt[ICMP].id), seq=pkt[ICMP].seq)
                 send(resp_ip/resp_icmp/pkt[0].payload,verbose=0)
                 if verbose and not debug:
-                    print ' Packet send.',
+                    print(' Packet send.', end=' ')
                 elif debug:
-                    print ' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()),
+                    print(' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()), end=' ')
 
         elif current_ttl == my_ttl + 2 :
             First_Packet = True
@@ -720,9 +720,9 @@ def process_packet(pkt_len,pkt):
                 resp_icmp = ICMP(type=11, code=0 ,id=hex(pkt[ICMP].id), seq=pkt[ICMP].seq)
                 send(resp_ip/resp_icmp/pkt[0].payload,verbose=0)
                 if verbose and not debug:
-                    print ' Packet send.',
+                    print(' Packet send.', end=' ')
                 elif debug:
-                    print ' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()),
+                    print(' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()), end=' ')
 
         elif current_ttl == my_ttl + 3 :
             First_Packet = True
@@ -731,9 +731,9 @@ def process_packet(pkt_len,pkt):
                 resp_icmp = ICMP(type=11, code=0 ,id=hex(pkt[ICMP].id), seq=pkt[ICMP].seq)
                 send(resp_ip/resp_icmp/pkt[0].payload,verbose=0)
                 if verbose and not debug:
-                    print ' Packet send.',
+                    print(' Packet send.', end=' ')
                 elif debug:
-                    print ' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()),
+                    print(' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()), end=' ')
 
         elif current_ttl == my_ttl + 4 :
             First_Packet = True
@@ -742,9 +742,9 @@ def process_packet(pkt_len,pkt):
                 resp_icmp = ICMP(type=11, code=0 ,id=hex(pkt[ICMP].id), seq=pkt[ICMP].seq)
                 send(resp_ip/resp_icmp/pkt[0].payload,verbose=0)
                 if verbose and not debug:
-                    print ' Packet send.',
+                    print(' Packet send.', end=' ')
                 elif debug:
-                    print ' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()),
+                    print(' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()), end=' ')
 
         elif current_ttl == my_ttl + 5 :
             First_Packet = True
@@ -753,9 +753,9 @@ def process_packet(pkt_len,pkt):
                 resp_icmp = ICMP(type=11, code=0 ,id=hex(pkt[ICMP].id), seq=pkt[ICMP].seq)
                 send(resp_ip/resp_icmp/pkt[0].payload,verbose=0)
                 if verbose and not debug:
-                    print ' Packet send.',
+                    print(' Packet send.', end=' ')
                 elif debug:
-                    print ' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()),
+                    print(' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()), end=' ')
 
         elif current_ttl == my_ttl + 6 :
             First_Packet = True
@@ -764,9 +764,9 @@ def process_packet(pkt_len,pkt):
                 resp_icmp = ICMP(type=11, code=0 ,id=hex(pkt[ICMP].id), seq=pkt[ICMP].seq)
                 send(resp_ip/resp_icmp/pkt[0].payload,verbose=0)
                 if verbose and not debug:
-                    print ' Packet send.',
+                    print(' Packet send.', end=' ')
                 elif debug:
-                    print ' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()),
+                    print(' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()), end=' ')
 
         elif current_ttl == my_ttl + 7 :
             First_Packet = True
@@ -775,15 +775,15 @@ def process_packet(pkt_len,pkt):
                 resp_icmp = ICMP(type=11, code=0 ,id=hex(pkt[ICMP].id), seq=pkt[ICMP].seq)
                 send(resp_ip/resp_icmp/pkt[0].payload,verbose=0)
                 if verbose and not debug:
-                    print ' Packet send.',
+                    print(' Packet send.', end=' ')
                 elif debug:
-                    print ' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()),
+                    print(' Packet send: {0} {1}'.format(resp_ip.summary(),resp_icmp.summary()), end=' ')
 
         elif current_ttl == my_ttl + 8 :
                 try:
                     if First_Packet:
                         if verbose:
-                            print ' Last hop. Changing pattern.',
+                            print(' Last hop. Changing pattern.', end=' ')
                         pattern = pattern[1:]
                         lines_deleted = lines_deleted + 1
                         if len(pattern)==0:
@@ -792,22 +792,22 @@ def process_packet(pkt_len,pkt):
                     elif not First_Packet:
                         First_Packet = True
                 except Exception as inst:
-                    print 'Exception in process_packet() function'
-                    print type(inst)     # the exception instance
-                    print inst.args      # arguments stored in .args
-                    print inst           # __str__ allows args to printed directly
+                    print('Exception in process_packet() function')
+                    print(type(inst))     # the exception instance
+                    print(inst.args)      # arguments stored in .args
+                    print(inst)           # __str__ allows args to printed directly
 
 
     except IndexError:
         if debug:
-            print 'List index out of range.'
+            print('List index out of range.')
         return
 
     except Exception as inst:
-        print 'Exception in process_packet() function'
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
+        print('Exception in process_packet() function')
+        print(type(inst))     # the exception instance
+        print(inst.args)      # arguments stored in .args
+        print(inst)           # __str__ allows args to printed directly
 
 
 
@@ -856,14 +856,14 @@ def main():
                 sys.exit(1)
             else:
                 # We have everything, just go on...
-                print
+                print()
 
                 if manage_firewall:
                     # Avoid being pinged during our operation...
                     iptables_command = "iptables -I INPUT 1 -p icmp -d 192.168.0.8 --icmp-type 8 -j DROP"
                     os.system(iptables_command)
                 else:
-                    print 'Remember to stop your computer from receving pings!! Otherwise it won\'t work. Use iptables -D INPUT 1 -p icmp --icmp-type 8 -j DROP'
+                    print('Remember to stop your computer from receving pings!! Otherwise it won\'t work. Use iptables -D INPUT 1 -p icmp --icmp-type 8 -j DROP')
 
                 if conspiracy:
                     fake_ip_vect = ['194.61.183.121','198.81.129.68','156.154.64.48','212.77.0.110','87.106.27.103','203.119.25.1','198.117.1.122','193.140.100.28']
@@ -881,8 +881,8 @@ def main():
                     iptables_command = "iptables -D INPUT 1"
                     os.system(iptables_command)
 
-        except Exception, e:
-            print "misc. exception (runtime error from user callback?):", e
+        except Exception as e:
+            print("misc. exception (runtime error from user callback?):", e)
         except KeyboardInterrupt:
             if manage_firewall:
                 # Before going out, put everything in place again...
@@ -893,7 +893,7 @@ def main():
 
     except KeyboardInterrupt:
         # CTRL-C pretty handling.
-        print "Keyboard Interruption!. Exiting."
+        print("Keyboard Interruption!. Exiting.")
         if manage_firewall:
             # Before going out, put everything in place again...
             iptables_command = "iptables -D INPUT 1"
